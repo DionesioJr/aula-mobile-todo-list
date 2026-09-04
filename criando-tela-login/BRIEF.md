@@ -1,4 +1,4 @@
-# Brief, Aula 2: Tela de Login
+# Brief: Tela de Login
 
 ## Por que essa aula existe
 A aula 1 (todo list completo) virou 3 horas de aluno só copiando código, sem

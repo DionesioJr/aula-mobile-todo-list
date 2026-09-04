@@ -1,4 +1,4 @@
-# Aula 2: Tela de Login
+# Tela de Login
 
 App React Native com uma única tela (Login), sem nenhuma biblioteca externa,
 só o que o React e o React Native trazem por padrão (`useState`, `View`,

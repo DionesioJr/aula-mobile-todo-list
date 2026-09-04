@@ -364,7 +364,7 @@ Todos possíveis só com o que a turma já viu hoje:
 
 global.AULA_LOGIN_RN = {
   meta: {
-    titulo:    'Aula 2: Tela de Login (React Native)',
+    titulo:    'Tela de Login (React Native)',
     projeto:   'login-react-native',
     subtitulo: 'React Native puro · sem bibliotecas externas',
     vazio:     'Projeto vazio.<br>Vamos criar tudo do zero.',

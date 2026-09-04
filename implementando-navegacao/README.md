@@ -1,4 +1,4 @@
-# Aula 3: Cadastro e Navegação
+# Cadastro e Navegação
 
 App React Native com duas telas (Login e Cadastro) e navegação entre elas,
 **sem nenhuma biblioteca externa**. Nem de UI, nem de navegação: só o que o

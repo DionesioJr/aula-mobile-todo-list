@@ -18,6 +18,7 @@ const vm = require('vm');
 
 const AULA_DIR = path.resolve(__dirname, '..');
 const ROOT_DIR = path.resolve(AULA_DIR, '..');
+const REPO_ROOT = path.resolve(ROOT_DIR, '..');
 const LESSON_FILE = path.join(AULA_DIR, 'aulas/cadastro-navegacao.js');
 
 /* Dependências que o Expo Snack já inclui por padrão em todo projeto novo:
@@ -33,7 +34,7 @@ function carregarAula(){
   const sandbox = { window: {}, console };
   sandbox.window.window = sandbox.window;
   vm.createContext(sandbox);
-  const arquivos = [path.join(AULA_DIR, 'player/virtual-fs.js'), LESSON_FILE];
+  const arquivos = [path.join(REPO_ROOT, 'shared/player/virtual-fs.js'), LESSON_FILE];
   for (const arquivo of arquivos){
     const codigo = fs.readFileSync(arquivo, 'utf8');
     vm.runInContext(codigo, sandbox, { filename: arquivo });

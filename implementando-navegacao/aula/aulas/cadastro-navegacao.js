@@ -762,7 +762,7 @@ Todos possíveis com o que já foi visto:
 
 global.AULA_CADASTRO_RN = {
   meta: {
-    titulo:    'Aula 3: Cadastro e Navegação (React Native)',
+    titulo:    'Cadastro e Navegação (React Native)',
     projeto:   'cadastro-navegacao-react-native',
     subtitulo: 'React Native puro · sem bibliotecas externas',
     vazio:     'Projeto da aula 2.<br>A tela de login já está pronta.',

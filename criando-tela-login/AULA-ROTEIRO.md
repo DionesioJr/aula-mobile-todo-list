@@ -1,4 +1,4 @@
-# Roteiro da Aula 2: Tela de Login (React Native, sem libs externas)
+# Roteiro: Tela de Login (React Native, sem libs externas)
 
 Documento de apoio do professor para a apresentação interativa
 [`aula/index.html`](aula/index.html).

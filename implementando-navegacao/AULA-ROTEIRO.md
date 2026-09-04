@@ -1,4 +1,4 @@
-# Roteiro da Aula 3: Cadastro e navegação (React Native, sem libs externas)
+# Roteiro: Cadastro e navegação (React Native, sem libs externas)
 
 Documento de apoio do professor para a apresentação interativa
 [`aula/index.html`](aula/index.html).

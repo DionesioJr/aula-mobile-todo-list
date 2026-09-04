@@ -1,4 +1,4 @@
-# Brief, Aula 3: Tela de Cadastro e navegação
+# Brief: Tela de Cadastro e navegação
 
 ## Por que essa aula existe
 A aula 2 entregou uma tela de login que funcionava mas não levava a lugar
