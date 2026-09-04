@@ -11,44 +11,48 @@ repositório sem nenhuma configuração extra.
 
 ## Estrutura
 
+Cada aula mora numa pasta com nome descritivo (o que ela implementa, não o
+número da aula):
+
 ```
-index.html            página inicial (catálogo de aulas)
-shared/player/         motor da apresentação, usado por todas as aulas
-aula-02/                projeto React Native da aula 2
+index.html                      página inicial (catálogo de aulas)
+shared/player/                   motor da apresentação, usado por todas as aulas
+criando-tela-login/               projeto React Native — tela de login
   aula/
-    index.html          apresentação interativa da aula 2
-    aulas/*.js           conteúdo da aula (etapas, slides, desafios)
-aula-03/                projeto React Native da aula 3
-  aula/...               idem
+    index.html                   apresentação interativa
+    aulas/*.js                    conteúdo da aula (etapas, slides, desafios)
+implementando-navegacao/          projeto React Native — cadastro + navegação
+  aula/...                        idem
 ```
 
-Cada `aula-XX/` também tem o projeto Expo usado em aula (`App.tsx`,
+Cada pasta de aula também tem o projeto Expo usado em aula (`App.tsx`,
 `src/screens/`, `package.json`) — isso é o código que os alunos acompanham
 sendo digitado na apresentação, não faz parte do site publicado.
 
 ## Adicionar uma aula nova
 
-1. Duplique uma pasta `aula-XX/` existente (ex.: `aula-03/`) com o próximo
-   número.
-2. Escreva o conteúdo da aula em `aula-XX/aula/aulas/minha-aula.js` — use
+1. Duplique uma pasta de aula existente (ex.: `implementando-navegacao/`)
+   com um nome descritivo do que a aula implementa (ex.:
+   `consumindo-api/`).
+2. Escreva o conteúdo da aula em `<pasta>/aula/aulas/minha-aula.js` — use
    [`shared/player/README.md`](shared/player/README.md) como referência do
    formato (`meta`, `inicial`, `steps`). O arquivo
-   `aula-XX/aula/aulas/_template.js` é o ponto de partida.
-3. Em `aula-XX/aula/index.html`, aponte os `<script>`/`<link>` do player
+   `<pasta>/aula/aulas/_template.js` é o ponto de partida.
+3. Em `<pasta>/aula/index.html`, aponte os `<script>`/`<link>` do player
    para `../../shared/player/...` (copie o `index.html` de uma aula
    existente e troque só o título e o nome do arquivo em `aulas/`).
 4. Acrescente um item ao array `AULAS` em [`index.html`](index.html) da
    raiz, com `titulo`, `subtitulo`, `conceito`, `resumo` e o `href` para
-   `aula-XX/aula/index.html`.
+   `<pasta>/aula/index.html`.
 
 O player é compartilhado (`shared/player/`) — não copie essa pasta para a
 aula nova, todas as aulas usam a mesma versão.
 
 ## Rodar localmente
 
-Não precisa de servidor: abra `index.html` (ou qualquer
-`aula-XX/aula/index.html`) direto no navegador, ou sirva a pasta com
-qualquer servidor estático:
+Não precisa de servidor: abra `index.html` (ou o `aula/index.html` de
+qualquer pasta de aula) direto no navegador, ou sirva a pasta com qualquer
+servidor estático:
 
 ```bash
 npx serve .
@@ -57,7 +61,7 @@ npx serve .
 Para rodar o app React Native de uma aula específica:
 
 ```bash
-cd aula-03
+cd implementando-navegacao
 npm install
 npx expo start
 ```

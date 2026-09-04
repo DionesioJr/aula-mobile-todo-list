@@ -88,14 +88,8 @@
   .card-top{
     display:flex;
     align-items:center;
-    justify-content:space-between;
+    justify-content:flex-end;
     margin-bottom:16px;
-  }
-  .numero{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--faint);
-    letter-spacing:.06em;
   }
   .conceito{
     font-family:var(--mono);
@@ -170,24 +164,23 @@
 <footer>Feito para acompanhar em aula ou revisar depois, sem instalar nada.</footer>
 
 <script>
-  // Para adicionar uma aula nova: crie a pasta aula-XX/ (ver README) e
-  // acrescente um item aqui. A ordem da lista é a ordem exibida na página.
+  // Para adicionar uma aula nova: crie a pasta com um nome descritivo
+  // (ver README) e acrescente um item aqui. A ordem da lista é a ordem
+  // exibida na página.
   const AULAS = [
     {
-      numero: '02',
-      titulo: 'Tela de Login',
+      titulo: 'Criando tela de login',
       subtitulo: 'React Native puro · sem bibliotecas externas',
       conceito: 'useState',
       resumo: 'Primeira tela do app: estado com useState, campos controlados e validação simples com Alert.',
-      href: 'aula-02/aula/index.html',
+      href: 'criando-tela-login/aula/index.html',
     },
     {
-      numero: '03',
-      titulo: 'Cadastro e Navegação',
+      titulo: 'Implementando navegação',
       subtitulo: 'React Native puro · sem bibliotecas externas',
       conceito: 'props',
-      resumo: 'Segunda tela do app: navegação feita na mão (sem @react-navigation) e props subindo e descendo entre componentes.',
-      href: 'aula-03/aula/index.html',
+      resumo: 'Tela de cadastro e navegação feita na mão (sem @react-navigation): props subindo e descendo entre componentes.',
+      href: 'implementando-navegacao/aula/index.html',
     },
   ];
 
@@ -196,7 +189,6 @@
     return (
       '<a class="card" href="' + aula.href + '">' +
         '<div class="card-top">' +
-          '<span class="numero">AULA ' + aula.numero + '</span>' +
           '<span class="conceito">' + aula.conceito + '</span>' +
         '</div>' +
         '<h2>' + aula.titulo + '</h2>' +
