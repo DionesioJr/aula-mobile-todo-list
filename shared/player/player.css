@@ -1,0 +1,465 @@
+  :root{
+    --bg:#0e1013;
+    --panel:#15181d;
+    --panel2:#111418;
+    --sidebar:#121418;
+    --border:#242931;
+    --border-soft:#1c2027;
+    --text:#dce2e9;
+    --muted:#828b96;
+    --faint:#5a626c;
+    --accent:#7ea6cc;
+    --accent-soft:rgba(126,166,204,.12);
+    --ok:#8fb996;
+    --warn:#c9a35f;
+    --danger:#c98b84;
+    --string:#a3bfd6;
+    --comment:#5f6873;
+    --tag:#8fb996;
+    --kw:#c98b84;
+    --num:#9fb8d4;
+    --fn:#b3a4cc;
+    --type:#c9a97f;
+    --ext-def:#8a929c;
+    --row-text:#aeb7c1;
+    --row-active-text:#fff;
+    --gutter-text:#3f464f;
+    --code-text:#c3cbd4;
+    --empty-hint:#3a4149;
+    --overlay-bg:rgba(10,12,15,.92);
+    --lead-text:#a9b3be;
+    --li-text:#bcc5cf;
+    --tip-text:#c2b79c;
+    --card-shadow:0 20px 50px rgba(0,0,0,.5);
+    --scrollbar-thumb:#262c34;
+    --scrollbar-thumb-hover:#333b45;
+    --mono:"Cascadia Mono",Consolas,"SF Mono","Courier New",monospace;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f5f7;
+    --panel:#ffffff;
+    --panel2:#fbfbfc;
+    --sidebar:#f6f7f9;
+    --border:#dde1e6;
+    --border-soft:#e7eaee;
+    --text:#20242a;
+    --muted:#666e78;
+    --faint:#8b929b;
+    --accent:#3b6ea5;
+    --accent-soft:rgba(59,110,165,.10);
+    --ok:#3f8f52;
+    --warn:#93701f;
+    --danger:#b1443a;
+    --string:#2f6a92;
+    --comment:#8b929b;
+    --tag:#3f8f52;
+    --kw:#b1443a;
+    --num:#2f6a92;
+    --fn:#6f4fa0;
+    --type:#93611c;
+    --ext-def:#6b7280;
+    --row-text:#3a4046;
+    --row-active-text:#161a1f;
+    --gutter-text:#b9c0c8;
+    --code-text:#23282e;
+    --empty-hint:#b4bcc4;
+    --overlay-bg:rgba(255,255,255,.92);
+    --lead-text:#4a5158;
+    --li-text:#333a41;
+    --tip-text:#6b5a2e;
+    --card-shadow:0 20px 50px rgba(20,25,30,.12);
+    --scrollbar-thumb:#cdd3da;
+    --scrollbar-thumb-hover:#b7bec6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    font-size:14px;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+    transition:background .15s,color .15s;
+  }
+  /* o motor adiciona .aula-player no elemento raiz, seja qual for o id */
+  .aula-player{display:flex;flex-direction:column;height:100vh}
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    display:flex;align-items:center;gap:16px;
+    padding:10px 20px;
+    background:var(--panel);
+    border-bottom:1px solid var(--border);
+    flex-shrink:0;
+    transition:padding .12s ease;
+  }
+  /* Recolhido: some a marca do projeto, o selo da parte e a dica de teclas —
+     os botões (Explorer, cabeçalho, nota, tema, velocidade) continuam à
+     mostra, senão não teria como reabrir. Pensado pra telas/projeções baixas. */
+  .aula-player.header-collapsed .topbar{padding-top:4px;padding-bottom:4px}
+  .aula-player.header-collapsed .topbar .proj,
+  .aula-player.header-collapsed .topbar .badge-part,
+  .aula-player.header-collapsed .topbar .keys{display:none}
+  .proj{display:flex;flex-direction:column;line-height:1.25}
+  .proj b{font-size:13.5px;font-weight:600;letter-spacing:-.005em}
+  .proj span{font-size:11.5px;color:var(--muted)}
+  .topbar .spacer{flex:1}
+  .badge-part{
+    font-size:11px;color:var(--muted);
+    letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+    border-left:1px solid var(--border);
+    padding:2px 0 2px 16px;
+    white-space:nowrap;
+  }
+  .keys{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--faint)}
+  .theme-toggle{
+    flex-shrink:0;width:28px;height:28px;border-radius:4px;
+    border:1px solid var(--border);background:var(--panel2);color:var(--muted);
+    font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .12s,color .12s,border-color .12s;
+  }
+  .theme-toggle:hover{background:var(--border-soft);color:var(--text);border-color:var(--faint)}
+  kbd{
+    background:var(--panel2);border:1px solid var(--border);
+    border-radius:3px;padding:2px 6px;font-family:var(--mono);font-size:10.5px;color:var(--muted);
+  }
+
+  /* controle de velocidade */
+  .speed{
+    display:flex;align-items:center;
+    border:1px solid var(--border);border-radius:4px;overflow:hidden;
+    background:var(--panel2);
+  }
+  .speed button{
+    background:transparent;border:none;color:var(--muted);cursor:pointer;
+    font-family:inherit;font-size:14px;padding:5px 11px;line-height:1;
+    transition:background .12s,color .12s;
+  }
+  .speed button:hover{background:var(--border-soft);color:var(--text)}
+  .speed button:disabled{opacity:.25;cursor:not-allowed}
+  .speed .val{
+    min-width:78px;text-align:center;
+    padding:3px 4px;border-left:1px solid var(--border);border-right:1px solid var(--border);
+  }
+  .speed .val b{display:block;font-size:12px;font-weight:600;color:var(--text)}
+  .speed .val i{display:block;font-style:normal;font-size:9.5px;color:var(--faint);font-family:var(--mono)}
+
+  /* ---------- MAIN ---------- */
+  .main{display:flex;flex:1;min-height:0}
+
+  /* ---------- SLIDE MODE (intro/note/outro/challenge, tela cheia) ---------- */
+  /* Sidebar, abas e faixa de ação são coisa de editor de código — não fazem
+     sentido (e só atrapalham) numa explicação de conceito. Some tudo isso e
+     deixa o slide ocupar a tela toda, pra um texto mais longo não "quebrar"
+     o layout apertado do editor. */
+  .aula-player.slide-mode .sidebar{display:none}
+  .aula-player.slide-mode .tabs,
+  .aula-player.slide-mode .action-strip,
+  .aula-player.slide-mode .note{display:none}
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    width:290px;flex-shrink:0;
+    background:var(--sidebar);
+    border-right:1px solid var(--border);
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    transition:width .15s ease,border-color .15s ease;
+  }
+  .sidebar.hidden{width:0;border-right-color:transparent}
+  .sb-head{
+    padding:14px 18px 10px;font-size:10.5px;letter-spacing:.14em;
+    color:var(--faint);text-transform:uppercase;font-weight:600;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .sb-head-left{display:flex;align-items:center;gap:6px}
+  .sb-head small{letter-spacing:.02em;text-transform:none;font-size:10.5px;color:var(--faint);font-weight:400}
+  .sb-collapse{
+    flex-shrink:0;width:16px;height:16px;line-height:1;border-radius:4px;
+    border:1px solid var(--border);background:transparent;color:var(--muted);
+    font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    text-transform:none;letter-spacing:0;
+  }
+  .sb-collapse:hover{color:var(--text);border-color:var(--faint)}
+  .tree{flex:1;overflow-y:auto;padding:2px 10px 16px}
+  .tree .vazio{
+    color:var(--faint);font-size:12.5px;padding:14px 8px;line-height:1.65;
+  }
+  .row{
+    display:flex;align-items:center;gap:9px;
+    padding:4px 8px;border-radius:3px;
+    font-size:13px;color:var(--row-text);cursor:default;
+    white-space:nowrap;position:relative;
+  }
+  /* guias verticais indicando a profundidade/hierarquia das pastas, ao
+     estilo de um explorer de IDE. -4px em cima/embaixo cancela o padding
+     vertical da .row para as linhas ficarem contínuas entre uma linha e a
+     próxima. */
+  .row .indent{display:flex;align-self:stretch;flex-shrink:0}
+  .row .indent i{width:15px;flex-shrink:0;position:relative;font-style:normal}
+  .row .indent i::before{
+    content:"";position:absolute;top:-4px;bottom:-4px;left:7px;
+    width:1px;background:var(--border-soft);
+  }
+  .row.active .indent i:last-child::before{background:var(--accent)}
+  .row .ico{
+    width:16px;height:16px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--faint);
+  }
+  .row .ico svg{display:block}
+  .row .ico.tsx,.row .ico.ts{color:var(--accent)}
+  .row .ico.js,.row .ico.jsx{color:var(--warn)}
+  .row .ico.json,.row .ico.md{color:var(--ext-def)}
+  .row .ico.dir{color:var(--muted)}
+  .row.dir{color:var(--text);font-weight:500}
+  .row.file{cursor:pointer}
+  .row.file:hover{background:var(--accent-soft)}
+  .row.active{background:var(--accent-soft);color:var(--row-active-text)}
+  .row.active::before{
+    content:"";position:absolute;left:-10px;top:0;bottom:0;width:2px;
+    background:var(--accent);
+  }
+  .row.new{animation:pop .45s ease}
+  @keyframes pop{
+    from{opacity:0;transform:translateX(-8px)}
+    to{opacity:1;transform:none}
+  }
+  .row .tick{
+    margin-left:auto;width:5px;height:5px;border-radius:50%;
+    background:var(--ok);opacity:.55;flex-shrink:0;
+  }
+  .sb-foot{
+    border-top:1px solid var(--border);padding:12px 18px;
+    font-size:11.5px;color:var(--muted);line-height:1.7;
+  }
+  .sb-foot-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .sb-foot b{
+    color:var(--faint);font-weight:600;font-size:10.5px;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px;
+  }
+  .deps-toggle{
+    flex-shrink:0;width:16px;height:16px;line-height:1;border-radius:4px;
+    border:1px solid var(--border);background:transparent;color:var(--muted);
+    font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    margin-bottom:5px;
+  }
+  .deps-toggle:hover{color:var(--text);border-color:var(--faint)}
+  .deps-list{overflow:hidden}
+  .sb-foot.colapsado .deps-list{display:none}
+  .sb-foot.colapsado b{margin-bottom:0}
+  .dep{display:flex;gap:8px;align-items:center;font-family:var(--mono);font-size:11px}
+  .dep i{width:4px;height:4px;border-radius:50%;background:var(--ok);font-style:normal;flex-shrink:0}
+  .dep.off{opacity:.28}
+  .dep.off i{background:var(--faint)}
+  .dep .ver{color:var(--faint)}
+
+  /* ---------- EDITOR ---------- */
+  .editor{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--panel2);position:relative}
+  .tabs{
+    display:flex;align-items:stretch;background:var(--panel);
+    border-bottom:1px solid var(--border);height:36px;flex-shrink:0;overflow:hidden;
+  }
+  .tab{
+    display:flex;align-items:center;gap:9px;padding:0 18px;
+    font-size:12px;color:var(--muted);border-right:1px solid var(--border);
+    background:var(--panel);max-width:340px;font-family:var(--mono);
+  }
+  .tab.on{background:var(--panel2);color:var(--text);box-shadow:inset 0 1px 0 var(--accent)}
+  .tab .dot{width:6px;height:6px;border-radius:50%;background:var(--faint);flex-shrink:0}
+  .tab .tab-preview{color:var(--warn);font-weight:400;margin-left:2px}
+  .action-strip{
+    display:flex;align-items:center;gap:12px;
+    padding:9px 20px;font-size:12.5px;
+    background:var(--panel2);
+    border-bottom:1px solid var(--border-soft);
+    color:var(--muted);flex-shrink:0;min-height:36px;
+  }
+  .action-strip b{color:var(--text);font-weight:500}
+  .action-strip .pill{
+    font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 8px;border-radius:3px;flex-shrink:0;
+    border:1px solid var(--border);color:var(--muted);background:transparent;
+  }
+  .pill.criar{border-color:rgba(143,185,150,.35);color:var(--ok)}
+  .pill.escrever{border-color:rgba(126,166,204,.35);color:var(--accent)}
+  .pill.inserir{border-color:rgba(179,164,204,.35);color:var(--fn)}
+  .pill.apagar{border-color:rgba(201,139,132,.35);color:var(--danger)}
+  .pill.info{border-color:rgba(201,163,95,.35);color:var(--warn)}
+  .pill.desafio{border-color:rgba(179,164,204,.5);color:var(--fn);background:rgba(179,164,204,.08)}
+
+  .codewrap{
+    flex:1;display:flex;align-items:stretch;overflow:auto;
+    font-family:var(--mono);
+  }
+  /* numeração e código precisam da MESMA altura de linha para ficarem alinhados */
+  .gutter{
+    padding:16px 10px 40vh 0;text-align:right;color:var(--gutter-text);
+    font:13px/20px var(--mono);
+    white-space:pre;user-select:none;flex-shrink:0;width:54px;
+    background:var(--panel2);position:sticky;left:0;z-index:1;
+  }
+  .code{
+    padding:16px 24px 40vh 14px;
+    font:13px/20px var(--mono);
+    white-space:pre;display:block;flex:1 0 auto;tab-size:2;color:var(--code-text);
+  }
+  .code .empty-hint{color:var(--empty-hint)}
+  .caret{
+    display:inline-block;width:2px;height:15px;background:var(--accent);
+    vertical-align:-3px;margin:0 -1px 0 0;animation:blink .9s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+
+  /* tokens */
+  .t-com{color:var(--comment);font-style:italic}
+  .t-str{color:var(--string)}
+  .t-kw{color:var(--kw)}
+  .t-num{color:var(--num)}
+  .t-tag{color:var(--tag)}
+  .t-fn{color:var(--fn)}
+  .t-type{color:var(--type)}
+  .t-arrow{color:var(--kw)}
+
+  /* ---------- CONCEPT (slides de conceito, exibidos como um "arquivo" de texto) ---------- */
+  /* Fica dentro do próprio .codewrap (que já sabe rolar), em vez de um modal
+     centralizado por cima: assim dá scroll normal e o zoom do navegador não
+     quebra o layout (flex + align-items:center + overflow tem esse bug em
+     vários browsers quando o conteúdo cresce mais que a viewport). */
+  .concept{
+    display:none;
+    flex:1 1 auto;width:100%;
+    font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  .codewrap.concept-mode .gutter,
+  .codewrap.concept-mode .code{display:none}
+  .codewrap.concept-mode .concept{display:block}
+  .concept-inner{
+    max-width:860px;margin:0 auto;padding:48px 46px 40vh;
+  }
+  .concept.fade-in .concept-inner{animation:cardIn .26s ease}
+  @keyframes cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .concept .eyebrow{
+    font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;margin-bottom:16px;
+    padding-bottom:14px;border-bottom:1px solid var(--border-soft);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+
+  /* ---------- CHALLENGE (cartão de desafio: turma resolve sozinha) ---------- */
+  .concept-inner.challenge{
+    border-left:3px solid var(--fn);padding-left:43px;
+  }
+  .concept-inner.challenge .eyebrow{color:var(--fn);border-bottom-color:rgba(179,164,204,.25)}
+  .concept-inner.challenge h2::before{content:"🧩 ";}
+  .time-chip{
+    flex-shrink:0;font-size:10px;letter-spacing:.06em;text-transform:none;
+    padding:3px 9px;border-radius:20px;font-weight:600;
+    border:1px solid rgba(179,164,204,.4);color:var(--fn);background:rgba(179,164,204,.08);
+  }
+  .concept h1{font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.22;margin-bottom:18px}
+  .concept h2{font-size:22px;font-weight:600;letter-spacing:-.015em;line-height:1.28;margin-bottom:18px}
+
+  /* ---------- MD-BODY (o Markdown de intro/note/outro/challenge) ---------- */
+  .concept .md-body p{color:var(--lead-text);font-size:14.5px;line-height:1.7;margin-bottom:16px}
+  .concept .md-body h3{font-size:17px;font-weight:600;color:var(--text);margin:26px 0 12px;letter-spacing:-.01em}
+  .concept .md-body h3:first-child{margin-top:0}
+  .concept .md-body h4{font-size:14.5px;font-weight:600;color:var(--text);margin:20px 0 10px}
+  .concept .md-body h5{
+    font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+    margin:18px 0 8px;
+  }
+  /* O item de lista NÃO pode ser flex container: cada <code> e cada pedaço de
+     texto viraria um flex item próprio, e a frase quebra em colunas verticais.
+     O marcador fica posicionado, o conteúdo continua sendo texto corrido. */
+  .concept .md-body ul{list-style:none;margin:0 0 16px;padding:0}
+  .concept .md-body ol{list-style:decimal;margin:0 0 16px;padding-left:26px}
+  .concept .md-body li{
+    font-size:14px;line-height:1.7;color:var(--li-text);margin-bottom:12px;
+  }
+  .concept .md-body li:last-child{margin-bottom:0}
+  .concept .md-body ul li{position:relative;padding-left:18px}
+  .concept .md-body ul li::before{
+    content:"";position:absolute;left:0;top:.65em;
+    width:4px;height:4px;border-radius:50%;background:var(--faint);
+  }
+  .concept .md-body ol li::marker{color:var(--faint);font-variant-numeric:tabular-nums}
+  .concept .md-body li b{color:var(--text);font-weight:600}
+  /* Código em linha no meio de uma frase: nunca deixa a linha inteira quebrar
+     no meio de um identificador, mas permite quebrar antes/depois dele. */
+  .concept .md-body code{white-space:nowrap}
+  .concept .md-body pre code{white-space:pre}
+  .concept code, .action-strip code, .note code{
+    background:rgba(126,166,204,.08);border:1px solid var(--border);border-radius:3px;
+    padding:1px 5px;font-family:var(--mono);font-size:.88em;color:var(--string);
+  }
+  .concept .md-body pre{
+    background:var(--panel);border:1px solid var(--border);border-radius:6px;
+    padding:14px 16px;overflow-x:auto;margin-bottom:16px;
+  }
+  .concept .md-body pre code{
+    background:none;border:none;padding:0;font-family:var(--mono);
+    font-size:12.5px;line-height:1.6;color:var(--code-text);
+  }
+  .concept .md-body hr{border:none;border-top:1px solid var(--border-soft);margin:26px 0}
+  .concept .md-body a{color:var(--accent)}
+  .concept .md-body blockquote{
+    margin:0 0 16px;padding:14px 18px;border-radius:4px;
+    background:rgba(201,163,95,.05);border-left:2px solid rgba(201,163,95,.45);
+    font-size:13.5px;color:var(--tip-text);line-height:1.6;
+  }
+  .concept .md-body blockquote b{color:var(--warn);font-weight:600}
+  .concept-inner.challenge .md-body blockquote{
+    background:rgba(179,164,204,.06);border-left-color:rgba(179,164,204,.5);color:var(--text);
+  }
+  .concept-inner.challenge .md-body blockquote b{color:var(--fn)}
+
+  /* ---------- NOTE (rodapé didático) ---------- */
+  .note{
+    flex-shrink:0;background:var(--panel);border-top:1px solid var(--border);
+    padding:13px 22px;font-size:13px;line-height:1.65;color:var(--lead-text);
+    min-height:52px;display:flex;gap:14px;align-items:flex-start;
+  }
+  /* Botão de trazer de volta mora na topbar (não aqui dentro), já que o
+     rodapé some por completo — ver .header-collapsed acima. */
+  .aula-player.note-hidden .note{display:none}
+  .note .q{
+    color:var(--faint);font-weight:600;flex-shrink:0;
+    font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    padding-top:3px;
+  }
+  .note b{color:var(--text);font-weight:600}
+
+  /* ---------- PROGRESS ---------- */
+  .progress{
+    flex-shrink:0;background:var(--panel);border-top:1px solid var(--border-soft);
+    padding:10px 22px 13px;
+  }
+  .pmeta{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-bottom:8px}
+  .pmeta .right{display:flex;gap:16px;align-items:center}
+  .pmeta b{color:var(--text);font-weight:600}
+  .ptrack{
+    height:4px;background:var(--border-soft);border-radius:2px;overflow:hidden;cursor:pointer;position:relative;
+  }
+  .pfill{
+    height:100%;width:0;
+    background:var(--accent);
+    transition:width .35s cubic-bezier(.4,0,.2,1);
+  }
+  .pticks{position:absolute;inset:0;display:flex;pointer-events:none}
+  .pticks i{border-right:1px solid var(--panel);height:100%;display:block}
+  .pticks i:last-child{border-right:none}
+  .navbtns{display:flex;gap:8px}
+  .navbtns button{
+    background:transparent;border:1px solid var(--border);color:var(--muted);
+    border-radius:4px;padding:5px 13px;font-size:11.5px;cursor:pointer;font-family:inherit;
+    transition:border-color .12s,color .12s;
+  }
+  .navbtns button:hover{border-color:var(--accent);color:var(--text)}
+  .navbtns button:disabled{opacity:.3;cursor:not-allowed;border-color:var(--border);color:var(--muted)}
+
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:5px;border:3px solid var(--panel2)}
+  ::-webkit-scrollbar-thumb:hover{background:var(--scrollbar-thumb-hover)}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aulas de Mobile — React Native do zero</title>
+<meta name="description" content="Plataforma de aulas de React Native: cada aula mostra o app sendo construído passo a passo, direto no navegador." />
+<style>
+  :root{
+    --bg:#0e1013;
+    --panel:#15181d;
+    --panel-hover:#191d23;
+    --border:#242931;
+    --border-soft:#1c2027;
+    --text:#dce2e9;
+    --muted:#828b96;
+    --faint:#5a626c;
+    --accent:#7ea6cc;
+    --accent-soft:rgba(126,166,204,.12);
+    --ok:#8fb996;
+    --card-shadow:0 20px 50px rgba(0,0,0,.35);
+    --mono:"Cascadia Mono",Consolas,"SF Mono","Courier New",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  header{
+    padding:72px 24px 48px;
+    text-align:center;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  h1{
+    font-size:clamp(28px,4vw,42px);
+    font-weight:700;
+    letter-spacing:-.01em;
+    margin-bottom:14px;
+  }
+  header p{
+    color:var(--muted);
+    font-size:16px;
+    max-width:560px;
+    margin:0 auto;
+    line-height:1.6;
+  }
+
+  main{
+    max-width:960px;
+    margin:0 auto;
+    padding:56px 24px 96px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:20px;
+  }
+
+  .card{
+    display:flex;
+    flex-direction:column;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:24px;
+    transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .card:hover{
+    transform:translateY(-2px);
+    border-color:var(--accent);
+    background:var(--panel-hover);
+    box-shadow:var(--card-shadow);
+  }
+
+  .card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+  }
+  .numero{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--faint);
+    letter-spacing:.06em;
+  }
+  .conceito{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:3px 9px;
+    border-radius:999px;
+  }
+
+  .card h2{
+    font-size:19px;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .card .subtitulo{
+    font-size:12.5px;
+    color:var(--faint);
+    font-family:var(--mono);
+    margin-bottom:14px;
+  }
+  .card .resumo{
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.55;
+    flex:1;
+    margin-bottom:20px;
+  }
+
+  .abrir{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--text);
+  }
+  .abrir .seta{
+    color:var(--accent);
+    transition:transform .15s ease;
+  }
+  .card:hover .abrir .seta{
+    transform:translateX(3px);
+  }
+
+  .em-breve{
+    opacity:.5;
+    pointer-events:none;
+  }
+  .em-breve .abrir{ color:var(--faint) }
+
+  footer{
+    text-align:center;
+    padding:32px 24px 56px;
+    color:var(--faint);
+    font-size:13px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">React Native · direto no navegador</div>
+  <h1>Aulas de Mobile</h1>
+  <p>Cada aula mostra o app sendo construído do zero, passo a passo. Escolha uma aula abaixo e siga no seu ritmo — use as setas do teclado para avançar.</p>
+</header>
+
+<main>
+  <div id="grid" class="grid"></div>
+</main>
+
+<footer>Feito para acompanhar em aula ou revisar depois, sem instalar nada.</footer>
+
+<script>
+  // Para adicionar uma aula nova: crie a pasta aula-XX/ (ver README) e
+  // acrescente um item aqui. A ordem da lista é a ordem exibida na página.
+  const AULAS = [
+    {
+      numero: '02',
+      titulo: 'Tela de Login',
+      subtitulo: 'React Native puro · sem bibliotecas externas',
+      conceito: 'useState',
+      resumo: 'Primeira tela do app: estado com useState, campos controlados e validação simples com Alert.',
+      href: 'aula-02/aula/index.html',
+    },
+    {
+      numero: '03',
+      titulo: 'Cadastro e Navegação',
+      subtitulo: 'React Native puro · sem bibliotecas externas',
+      conceito: 'props',
+      resumo: 'Segunda tela do app: navegação feita na mão (sem @react-navigation) e props subindo e descendo entre componentes.',
+      href: 'aula-03/aula/index.html',
+    },
+  ];
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = AULAS.map(function (aula) {
+    return (
+      '<a class="card" href="' + aula.href + '">' +
+        '<div class="card-top">' +
+          '<span class="numero">AULA ' + aula.numero + '</span>' +
+          '<span class="conceito">' + aula.conceito + '</span>' +
+        '</div>' +
+        '<h2>' + aula.titulo + '</h2>' +
+        '<div class="subtitulo">' + aula.subtitulo + '</div>' +
+        '<p class="resumo">' + aula.resumo + '</p>' +
+        '<span class="abrir">Abrir aula <span class="seta">&rarr;</span></span>' +
+      '</a>'
+    );
+  }).join('');
+</script>
+
+</body>
+</html>
