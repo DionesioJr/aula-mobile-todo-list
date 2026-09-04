@@ -94,7 +94,7 @@
     flex-shrink:0;
     transition:padding .12s ease;
   }
-  /* Recolhido: some a marca do projeto, o selo da parte e a dica de teclas —
+  /* Recolhido: some a marca do projeto, o selo da parte e a dica de teclas;
      os botões (Explorer, cabeçalho, nota, tema, velocidade) continuam à
      mostra, senão não teria como reabrir. Pensado pra telas/projeções baixas. */
   .aula-player.header-collapsed .topbar{padding-top:4px;padding-bottom:4px}
@@ -149,7 +149,7 @@
   .main{display:flex;flex:1;min-height:0}
 
   /* ---------- SLIDE MODE (intro/note/outro/challenge, tela cheia) ---------- */
-  /* Sidebar, abas e faixa de ação são coisa de editor de código — não fazem
+  /* Sidebar, abas e faixa de ação são coisa de editor de código, não fazem
      sentido (e só atrapalham) numa explicação de conceito. Some tudo isso e
      deixa o slide ocupar a tela toda, pra um texto mais longo não "quebrar"
      o layout apertado do editor. */
@@ -422,7 +422,7 @@
     min-height:52px;display:flex;gap:14px;align-items:flex-start;
   }
   /* Botão de trazer de volta mora na topbar (não aqui dentro), já que o
-     rodapé some por completo — ver .header-collapsed acima. */
+     rodapé some por completo; ver .header-collapsed acima. */
   .aula-player.note-hidden .note{display:none}
   .note .q{
     color:var(--faint);font-weight:600;flex-shrink:0;

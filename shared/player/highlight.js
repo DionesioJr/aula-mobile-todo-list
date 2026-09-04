@@ -1,5 +1,5 @@
 /* =========================================================================
-   AULA ENGINE — realce de sintaxe (TS/TSX)
+   AULA ENGINE: realce de sintaxe (TS/TSX)
    ---------------------------------------------------------------------------
    Recebe uma string de código e devolve HTML com <span> por tipo de token.
    Puro: não toca no DOM.

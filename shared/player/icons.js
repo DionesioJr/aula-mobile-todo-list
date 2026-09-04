@@ -1,7 +1,7 @@
 /* =========================================================================
-   AULA ENGINE — ícones de pasta/arquivo
+   AULA ENGINE: ícones de pasta/arquivo
    ---------------------------------------------------------------------------
-   SVGs de traço — a cor vem do CSS (currentColor), por extensão.
+   SVGs de traço: a cor vem do CSS (currentColor), por extensão.
    ========================================================================= */
 (function (global) {
 'use strict';

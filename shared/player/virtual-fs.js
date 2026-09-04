@@ -1,5 +1,5 @@
 /* =========================================================================
-   AULA ENGINE — sistema de arquivos virtual
+   AULA ENGINE: sistema de arquivos virtual
    ---------------------------------------------------------------------------
    Puro, sem DOM: reconstrói o estado do projeto (entries + files + arquivo
    ativo) aplicando as etapas da aula, e monta a árvore usada pela sidebar.

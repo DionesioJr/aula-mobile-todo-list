@@ -1,5 +1,5 @@
 /* =========================================================================
-   AULA ENGINE — marcação da interface
+   AULA ENGINE: marcação da interface
    ---------------------------------------------------------------------------
    O motor monta a própria interface: o HTML da página fica só com <div id="app">,
    e este arquivo gera o esqueleto (topbar, sidebar, editor, progresso).

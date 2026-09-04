@@ -1,14 +1,14 @@
-# Brief — Aula 2: Tela de Login
+# Brief, Aula 2: Tela de Login
 
 ## Por que essa aula existe
 A aula 1 (todo list completo) virou 3 horas de aluno só copiando código, sem
-pausa pra pensar — pouco aprendizado, cansaço grande. A aula 2 corrige o
+pausa pra pensar, pouco aprendizado, cansaço grande. A aula 2 corrige o
 formato, não só o conteúdo: escopo bem menor (uma tela só), e a apresentação
 para em pontos fixos pra turma **tentar sozinha antes de ver a solução**.
 
 ## O que é
 Só a tela de Login de um app React Native. Sem telas seguintes, sem
-navegação — isso fica pra próxima aula, quando já existir um segundo lugar
+navegação, isso fica pra próxima aula, quando já existir um segundo lugar
 pra ir. Sem SQLite, sem API: nem existe uma "conta" de verdade, só validação
 de campos preenchidos.
 
@@ -20,7 +20,7 @@ trazem de fábrica**: `useState`, `View`, `Text`, `TextInput`,
 declarar no `package.json` além do que o Expo Snack já cria sozinho.
 
 ## Estilização: o mínimo possível
-`StyleSheet.create` básico — cor de fundo, borda, padding. Nenhum design
+`StyleSheet.create` básico, cor de fundo, borda, padding. Nenhum design
 elaborado, nenhuma discussão de CSS a fundo. O tempo da aula vai para
 **estado**, não para aparência.
 
@@ -28,14 +28,14 @@ elaborado, nenhuma discussão de CSS a fundo. O tempo da aula vai para
 O `LoginScreen.tsx` é construído em camadas, cada uma só possível com o que
 veio antes:
 
-1. **Sem estado nenhum** — tela puramente visual, campos "descontrolados".
+1. **Sem estado nenhum**: tela puramente visual, campos "descontrolados".
    Mostra que o React Native funciona sem `useState`, mas o componente não
    sabe o que está escrito nos campos.
-2. **Um `useState`** — o campo "usuário" vira componente controlado
+2. **Um `useState`**: o campo "usuário" vira componente controlado
    (`value` + `onChangeText`). Demonstrado ao vivo pelo professor.
-3. **Outro `useState`** — o campo "senha" repete o mesmo padrão. Este é
+3. **Outro `useState`**: o campo "senha" repete o mesmo padrão. Este é
    feito pelos alunos sozinhos (desafio), não demonstrado primeiro.
-4. **Estado usado numa decisão** — a função `handleLogin` lê os dois
+4. **Estado usado numa decisão**: a função `handleLogin` lê os dois
    estados num `if` comum e decide entre dois `Alert.alert`. Também feito
    pelos alunos sozinhos antes da revelação.
 
@@ -45,7 +45,7 @@ Três pausas do tipo "tente sozinho, depois eu mostro":
 2. Repetir o padrão de estado controlado do campo usuário no campo senha.
 3. Escrever a função `handleLogin` com a validação e os dois `Alert`.
 
-Cada desafio pede só conceitos já demonstrados até aquele ponto — nunca algo
+Cada desafio pede só conceitos já demonstrados até aquele ponto, nunca algo
 novo sem exemplo prévio.
 
 ## Estrutura de arquivos
@@ -58,7 +58,7 @@ src/
 
 ## Linguagem / Bibliotecas
 - **TypeScript** (consistente com a aula 1), mas sem nenhum tipo de
-  navegação — não há `NativeStackScreenProps` nem `RootStackParamList` hoje.
+  navegação, não há `NativeStackScreenProps` nem `RootStackParamList` hoje.
 - Zero dependências além do que o Expo Snack cria por padrão.
 
 ## Compatibilidade com Expo Snack

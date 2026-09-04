@@ -1,7 +1,7 @@
 # Aulas de Mobile
 
 Plataforma com todas as aulas de React Native. Cada aula é uma apresentação
-interativa que constrói um app passo a passo, direto no navegador — sem
+interativa que constrói um app passo a passo, direto no navegador, sem
 instalar nada. [`index.html`](index.html) é a página inicial, com um card
 por aula.
 
@@ -17,16 +17,16 @@ número da aula):
 ```
 index.html                      página inicial (catálogo de aulas)
 shared/player/                   motor da apresentação, usado por todas as aulas
-criando-tela-login/               projeto React Native — tela de login
+criando-tela-login/               projeto React Native, tela de login
   aula/
     index.html                   apresentação interativa
     aulas/*.js                    conteúdo da aula (etapas, slides, desafios)
-implementando-navegacao/          projeto React Native — cadastro + navegação
+implementando-navegacao/          projeto React Native, cadastro + navegação
   aula/...                        idem
 ```
 
 Cada pasta de aula também tem o projeto Expo usado em aula (`App.tsx`,
-`src/screens/`, `package.json`) — isso é o código que os alunos acompanham
+`src/screens/`, `package.json`), isso é o código que os alunos acompanham
 sendo digitado na apresentação, não faz parte do site publicado.
 
 ## Adicionar uma aula nova
@@ -34,7 +34,7 @@ sendo digitado na apresentação, não faz parte do site publicado.
 1. Duplique uma pasta de aula existente (ex.: `implementando-navegacao/`)
    com um nome descritivo do que a aula implementa (ex.:
    `consumindo-api/`).
-2. Escreva o conteúdo da aula em `<pasta>/aula/aulas/minha-aula.js` — use
+2. Escreva o conteúdo da aula em `<pasta>/aula/aulas/minha-aula.js`: use
    [`shared/player/README.md`](shared/player/README.md) como referência do
    formato (`meta`, `inicial`, `steps`). O arquivo
    `<pasta>/aula/aulas/_template.js` é o ponto de partida.
@@ -45,7 +45,7 @@ sendo digitado na apresentação, não faz parte do site publicado.
    raiz, com `titulo`, `subtitulo`, `conceito`, `resumo` e o `href` para
    `<pasta>/aula/index.html`.
 
-O player é compartilhado (`shared/player/`) — não copie essa pasta para a
+O player é compartilhado (`shared/player/`), não copie essa pasta para a
 aula nova, todas as aulas usam a mesma versão.
 
 ## Rodar localmente

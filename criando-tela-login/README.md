@@ -1,6 +1,6 @@
-# Aula 2 — Tela de Login
+# Aula 2: Tela de Login
 
-App React Native com uma única tela (Login), sem nenhuma biblioteca externa —
+App React Native com uma única tela (Login), sem nenhuma biblioteca externa,
 só o que o React e o React Native trazem por padrão (`useState`, `View`,
 `Text`, `TextInput`, `TouchableOpacity`, `StyleSheet`, `Alert`).
 
@@ -34,16 +34,16 @@ Tudo fica na pasta [`aula/`](aula/). Abra [`aula/index.html`](aula/index.html)
 no navegador (duplo clique) para a apresentação que constrói a tela do zero.
 
 Diferente da aula 1, essa apresentação **para em três pontos** e propõe um
-desafio para a turma resolver sozinha antes de ver a solução sendo digitada
-— ver [`AULA-ROTEIRO.md`](AULA-ROTEIRO.md) para o roteiro completo do
+desafio para a turma resolver sozinha antes de ver a solução sendo digitada,
+veja [`AULA-ROTEIRO.md`](AULA-ROTEIRO.md) para o roteiro completo do
 professor.
 
-- [`aula/player/`](aula/player/) — motor reutilizável (CSS + JS), o mesmo da
+- [`aula/player/`](aula/player/), motor reutilizável (CSS + JS), o mesmo da
   aula 1, com um tipo de etapa novo (`challenge`). Veja o
   [README dele](aula/player/README.md) para usar em outras aulas.
-- [`aula/aulas/login-react-native.js`](aula/aulas/login-react-native.js) — o
+- [`aula/aulas/login-react-native.js`](aula/aulas/login-react-native.js), o
   conteúdo desta aula, em um arquivo só.
-- [`aula/aulas/_template.js`](aula/aulas/_template.js) — ponto de partida
+- [`aula/aulas/_template.js`](aula/aulas/_template.js), ponto de partida
   para uma aula nova.
 
 ### Mantendo a aula sincronizada com o código

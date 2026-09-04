@@ -1,8 +1,8 @@
 /* =========================================================================
-   AULA ENGINE — markdown mínimo para os cartões de conceito/desafio
+   AULA ENGINE: markdown mínimo para os cartões de conceito/desafio
    ---------------------------------------------------------------------------
    Converte um texto em Markdown (campo `md` de uma etapa intro/note/outro/
-   challenge) para HTML. Não é um parser completo — só o suficiente pra
+   challenge) para HTML. Não é um parser completo, só o suficiente pra
    organizar uma explicação: títulos, parágrafos, listas, código, citação
    (usada como caixa de "dica") e negrito/código em linha.
 
@@ -20,7 +20,7 @@ function escapeHtml(s){
     .replace(/>/g, '&gt;');
 }
 
-/* Marcador (Unicode de uso privado) improvável de aparecer em texto normal —
+/* Marcador (Unicode de uso privado) improvável de aparecer em texto normal;
    guarda os trechos de `código em linha` enquanto o resto é escapado e
    formatado, e devolve eles no final. Números soltos no texto (ex.: "3
    campos") não podem servir de marcador, senão viram <code> por engano. */
@@ -88,7 +88,7 @@ function render(md){
     let m;
     if ((m = t.match(/^(#{1,3})\s+(.*)$/))){
       flushAll();
-      const nivel = m[1].length + 2; // markdown # começa em h3 — h1/h2 já são o título do slide
+      const nivel = m[1].length + 2; // markdown # começa em h3: h1/h2 já são o título do slide
       html += '<h' + nivel + '>' + inline(m[2]) + '</h' + nivel + '>';
       i++; continue;
     }

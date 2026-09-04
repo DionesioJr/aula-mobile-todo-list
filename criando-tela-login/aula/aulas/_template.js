@@ -1,5 +1,5 @@
 /* =========================================================================
-   TEMPLATE DE AULA — copie este arquivo para criar uma aula nova.
+   TEMPLATE DE AULA: copie este arquivo para criar uma aula nova.
 
    1. Copie para aulas/minha-aula.js
    2. Troque meta, deps e steps
@@ -40,8 +40,8 @@ const STEPS = [
 },
 {
   part:'Preparação', op:'note',
-  title:'Passo 1 — Preparar o ambiente',
-  lead:'Explicação em texto, sem código — aparece como cartão por cima do editor.',
+  title:'Passo 1: Preparar o ambiente',
+  lead:'Explicação em texto, sem código; aparece como cartão por cima do editor.',
   bullets:['Instrução A', 'Instrução B'],
   tip:'Dica opcional no rodapé do cartão.'
 },
@@ -80,7 +80,7 @@ const STEPS = [
 
 global.MINHA_AULA = {
   meta: {
-    titulo:    'Aula — Título',
+    titulo:    'Aula: Título',
     projeto:   'nome-do-projeto',
     subtitulo: 'ferramenta · linguagem',
     vazio:     'Projeto vazio.<br>Vamos criar tudo do zero.',

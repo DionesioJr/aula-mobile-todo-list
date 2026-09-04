@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /* =========================================================================
-   CHECK-SYNC — detector de divergência entre a aula e o código real
+   CHECK-SYNC, detector de divergência entre a aula e o código real
    ---------------------------------------------------------------------------
    Reconstrói o estado final de cada arquivo a partir das etapas da aula
    (mesma lógica de aula/player/virtual-fs.js) e compara com o arquivo
-   correspondente no projeto real. Não corrige nada sozinho — só aponta
+   correspondente no projeto real. Não corrige nada sozinho, só aponta
    onde a aula ficou desatualizada.
 
    Uso: node aula/tools/check-sync.js
@@ -20,7 +20,7 @@ const AULA_DIR = path.resolve(__dirname, '..');
 const ROOT_DIR = path.resolve(AULA_DIR, '..');
 const LESSON_FILE = path.join(AULA_DIR, 'aulas/login-react-native.js');
 
-/* Dependências que o Expo Snack já inclui por padrão em todo projeto novo —
+/* Dependências que o Expo Snack já inclui por padrão em todo projeto novo:
    a aula não ensina o aluno a declará-las, então não é divergência real. */
 const DEPS_BASE_DO_SNACK = new Set([
   'expo', 'react', 'react-dom', 'react-native', 'react-native-web',
@@ -40,7 +40,7 @@ function carregarAula(){
   }
   const aula = sandbox.window.AULA_LOGIN_RN;
   const { snapshot } = sandbox.window.AulaEngine.fs;
-  if (!aula) throw new Error('AULA_LOGIN_RN não foi montada — verifique aulas/login-react-native.js');
+  if (!aula) throw new Error('AULA_LOGIN_RN não foi montada, verifique aulas/login-react-native.js');
   return { aula, snapshot };
 }
 
@@ -90,7 +90,7 @@ function checarDependencias(aula){
   lista.forEach(d => {
     if (!(d.name in depsReais)) problemas.push(`  falta no package.json real: ${d.name}@${d.ver}`);
     else if (d.ver && d.ver !== '*' && depsReais[d.name] !== d.ver){
-      problemas.push(`  versão diferente: ${d.name} — aula diz ${d.ver}, projeto real tem ${depsReais[d.name]}`);
+      problemas.push(`  versão diferente: ${d.name}, aula diz ${d.ver}, projeto real tem ${depsReais[d.name]}`);
     }
   });
   Object.keys(depsReais).forEach(nome => {
@@ -123,7 +123,7 @@ function main(){
     const conteudoReal = normaliza(fs.readFileSync(abs, 'utf8'));
     if (conteudoAula !== conteudoReal){
       divergencias++;
-      console.log(`\n✗ ${relPath} — aula desatualizada em relação ao projeto real`);
+      console.log(`\n✗ ${relPath}, aula desatualizada em relação ao projeto real`);
       imprimirDiff(diffLinhas(conteudoAula.split('\n'), conteudoReal.split('\n')));
     }
   });

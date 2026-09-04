@@ -1,8 +1,8 @@
-# Brief — Aula 3: Tela de Cadastro e navegação
+# Brief, Aula 3: Tela de Cadastro e navegação
 
 ## Por que essa aula existe
 A aula 2 entregou uma tela de login que funcionava mas não levava a lugar
-nenhum — de propósito, porque não existia um segundo lugar. Esta aula cria
+nenhum, de propósito, porque não existia um segundo lugar. Esta aula cria
 esse segundo lugar e, com ele, o assunto que ficou pendente: **como duas
 telas conversam**.
 
@@ -13,34 +13,34 @@ ver a solução sendo digitada.
 ## O que é
 A tela de **Cadastro** (nome, usuário, senha, confirmação) mais a
 **navegação** entre ela e o Login que já existe. Sem SQLite, sem API: a
-"conta" criada vive num `useState` do `App.tsx` e some quando o app fecha —
+"conta" criada vive num `useState` do `App.tsx` e some quando o app fecha,
 o suficiente para o login parar de aceitar qualquer coisa.
 
 ## Regra principal: nenhuma biblioteca externa
 Igual à aula 2, e agora com um alvo específico: **nada de
-`@react-navigation`**. A navegação é feita na mão — um `useState` no
+`@react-navigation`**. A navegação é feita na mão, um `useState` no
 `App.tsx` guardando o nome da tela e um `if` decidindo o que renderizar.
 
 Isso não é uma limitação, é o conteúdo: a turma vê que "trocar de tela" é
 só trocar qual componente é devolvido. Quando `@react-navigation` aparecer
-numa aula futura, ela deixa de ser mágica — vira uma conveniência (pilha de
+numa aula futura, ela deixa de ser mágica, vira uma conveniência (pilha de
 telas, botão de voltar, animação) sobre um mecanismo já entendido.
 
 ## Ponto de partida
 O projeto **não começa vazio**. `App.tsx` e `src/screens/LoginScreen.tsx`
-já estão na árvore, exatamente como ficaram no fim da aula 2 — o player
+já estão na árvore, exatamente como ficaram no fim da aula 2, o player
 carrega esses dois arquivos como estado inicial (`inicial.files`).
 
 ## O conceito novo: props
 É a primeira vez que a turma escreve props próprias. A progressão:
 
-1. **Prop de função, um sentido** — `App` passa `aoCriarConta={() =>
+1. **Prop de função, um sentido**: `App` passa `aoCriarConta={() =>
    setTela('cadastro')}` para o `LoginScreen`. Dado desce, aviso sobe.
-2. **A mesma coisa de volta** — `aoVoltar` no `CadastroScreen`. Repetição
+2. **A mesma coisa de volta**: `aoVoltar` no `CadastroScreen`. Repetição
    pura, feita pela turma como desafio.
-3. **Prop de função com parâmetros** — `aoCadastrar(usuario, senha)` leva os
+3. **Prop de função com parâmetros**: `aoCadastrar(usuario, senha)` leva os
    dados digitados de volta para o pai.
-4. **Prop de dado** — `conta={conta}` desce do `App` para o `LoginScreen`,
+4. **Prop de dado**: `conta={conta}` desce do `App` para o `LoginScreen`,
    que finalmente consegue validar quem entra.
 
 Junto vem `type Props` do TypeScript: cada tela declara o que aceita
@@ -61,8 +61,7 @@ só o que já apareceu até ali.
 
 ## Estilização: o mínimo possível
 `StyleSheet.create` copiado do `LoginScreen`, mais um estilo `link`. A
-duplicação entre os dois arquivos é **proposital e assumida em voz alta** —
-vira o primeiro desafio de casa (extrair para um arquivo de estilos).
+duplicação entre os dois arquivos é **proposital e assumida em voz alta**: vira o primeiro desafio de casa (extrair para um arquivo de estilos).
 
 ## Estrutura de arquivos
 ```
@@ -74,7 +73,7 @@ src/
 ```
 
 ## Linguagem / Bibliotecas
-- **TypeScript**, agora com `type Props` — mas ainda sem nenhum tipo de
+- **TypeScript**, agora com `type Props`: mas ainda sem nenhum tipo de
   biblioteca de navegação (`NativeStackScreenProps` etc. não existem aqui).
 - Zero dependências além do que o Expo Snack cria por padrão. O
   `package.json` não é tocado nesta aula.

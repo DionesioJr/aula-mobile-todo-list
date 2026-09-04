@@ -69,7 +69,7 @@ export default function CadastroScreen({ aoCadastrar, aoVoltar }: Props) {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={aoVoltar}>
-        <Text style={styles.link}>Já tenho conta — voltar</Text>
+        <Text style={styles.link}>Já tenho conta, voltar</Text>
       </TouchableOpacity>
     </View>
   );

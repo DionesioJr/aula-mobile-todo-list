@@ -1,6 +1,6 @@
-# Aula 3 — Cadastro e Navegação
+# Aula 3: Cadastro e Navegação
 
-App React Native com duas telas (Login e Cadastro) e navegação entre elas —
+App React Native com duas telas (Login e Cadastro) e navegação entre elas,
 **sem nenhuma biblioteca externa**. Nem de UI, nem de navegação: só o que o
 React e o React Native trazem por padrão (`useState`, `View`, `Text`,
 `TextInput`, `TouchableOpacity`, `StyleSheet`, `Alert`) e `props`.
@@ -47,7 +47,7 @@ return <LoginScreen conta={conta} aoCriarConta={() => setTela('cadastro')} />;
 ```
 
 A conta criada no cadastro também mora no `App.tsx` (elevar o estado) e
-desce como prop para o login validar quem entra. Tudo em memória — fechou o
+desce como prop para o login validar quem entra. Tudo em memória, fechou o
 app, sumiu.
 
 ## Estrutura
@@ -64,20 +64,20 @@ src/
 
 Tudo fica na pasta [`aula/`](aula/). Abra [`aula/index.html`](aula/index.html)
 no navegador (duplo clique) para a apresentação que constrói a tela de
-cadastro e a navegação do zero — partindo do código pronto da aula 2.
+cadastro e a navegação do zero, partindo do código pronto da aula 2.
 
 A apresentação **para em cinco pontos** e propõe um desafio para a turma
-resolver sozinha antes de ver a solução sendo digitada — ver
+resolver sozinha antes de ver a solução sendo digitada, ver
 [`AULA-ROTEIRO.md`](AULA-ROTEIRO.md) para o roteiro completo do professor e
 [`BRIEF.md`](BRIEF.md) para o escopo.
 
-- [`aula/player/`](aula/player/) — motor reutilizável (CSS + JS), o mesmo das
+- [`aula/player/`](aula/player/), motor reutilizável (CSS + JS), o mesmo das
   aulas anteriores. Veja o [README dele](aula/player/README.md) para usar em
   outras aulas.
-- [`aula/aulas/cadastro-navegacao.js`](aula/aulas/cadastro-navegacao.js) — o
+- [`aula/aulas/cadastro-navegacao.js`](aula/aulas/cadastro-navegacao.js), o
   conteúdo desta aula, em um arquivo só. O código herdado da aula 2 fica no
   `INITIAL_FILES`, no topo do arquivo.
-- [`aula/aulas/_template.js`](aula/aulas/_template.js) — ponto de partida
+- [`aula/aulas/_template.js`](aula/aulas/_template.js), ponto de partida
   para uma aula nova.
 
 ### Mantendo a aula sincronizada com o código

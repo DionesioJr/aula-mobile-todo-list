@@ -1,5 +1,5 @@
 /* =========================================================================
-   AULA PLAYER — motor de apresentação de aulas de código
+   AULA PLAYER: motor de apresentação de aulas de código
    ---------------------------------------------------------------------------
    Reutilizável em qualquer aula: ele não sabe nada sobre React Native, Snack
    ou Todo List. Recebe um objeto de aula (metadados + dependências + etapas)
@@ -17,7 +17,7 @@
      <script src="player/player.js"></script>
      <script>AulaPlayer.iniciar(MINHA_AULA);</script>
 
-   Formato do objeto de aula — veja aulas/todo-list-react-native.js:
+   Formato do objeto de aula, veja aulas/todo-list-react-native.js:
      meta:    {titulo, projeto, subtitulo, vazio}
      inicial: {entries:[{path,type}], files:{path:conteudo}}   (opcional)
      deps:    {titulo, desde, lista:[{name,ver}]}              (opcional)
@@ -25,14 +25,14 @@
 
    Operações de etapa (op):
      intro | note | outro  → slide em tela cheia (sidebar, abas e editor somem;
-                              o conteúdo vai no campo `md`, em Markdown — ver
+                              o conteúdo vai no campo `md`, em Markdown, ver
                               player/markdown.js. `title`/`eyebrow` continuam
                               fora do markdown, como cabeçalho do slide)
      challenge              → mesmo slide em tela cheia, com sotaque roxo: para
                                a aula, propõe um exercício para a turma resolver
                                sozinha (`md` + `time` opcional, ex.: '5 min',
                                mostrado como selo). A resolução "oficial"
-                               continua sendo as próximas etapas code/insert —
+                               continua sendo as próximas etapas code/insert;
                                quem apresenta revela depois que a turma tentou.
      folder {target}       → cria pasta
      file   {target}       → cria arquivo vazio e abre
@@ -66,7 +66,7 @@ const SPEED_PADRAO = 2;
 const LINHA = 20, TOPO = 14; // altura da linha e topo do código, em px
 
 /* =========================================================================
-   PLAYER — uma instância por aula
+   PLAYER: uma instância por aula
    ========================================================================= */
 function criar(aula, opcoes){
   const cfg   = opcoes || {};
@@ -193,10 +193,10 @@ function criar(aula, opcoes){
   }
   /* Etapas intro/note/outro/challenge viram um slide em TELA CHEIA: sidebar,
      abas e faixa de ação somem (classe .slide-mode na raiz) e o conteúdo
-     ocupa o espaço todo — assim uma explicação longa nunca "quebra" o layout
+     ocupa o espaço todo, assim uma explicação longa nunca "quebra" o layout
      de editor+sidebar, que é pensado pra código, não pra texto corrido. O
      corpo do slide é Markdown (campo `md`), convertido por
-     AulaEngine.markdown — títulos, listas, código e citação (usada como
+     AulaEngine.markdown: títulos, listas, código e citação (usada como
      caixa de destaque/dica) sem precisar escrever HTML na mão.
      Continua dentro do próprio .codewrap (que já sabe rolar) em vez de um
      modal centralizado por cima: dá scroll normal e o zoom do navegador não
@@ -282,8 +282,7 @@ function criar(aula, opcoes){
   function temaInicial(){
     const salvo = lerTemaSalvo();
     if (salvo === 'light' || salvo === 'dark') return salvo;
-    const clara = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    return clara ? 'light' : 'dark';
+    return 'light';
   }
   function aplicarTema(t){
     document.documentElement.setAttribute('data-theme', t);
@@ -318,7 +317,7 @@ function criar(aula, opcoes){
 
   /* ---------- Cabeçalho (recolher a topbar em telas pequenas) ---------- */
   /* "Recolher" e não "ocultar": some só a marca do projeto, o selo da parte
-     e a dica de teclas — os botões de controle (Explorer, tema, velocidade e
+     e a dica de teclas; os botões de controle (Explorer, tema, velocidade e
      estes dois toggles) continuam à mostra, senão não teria como reabrir. */
   const HEADER_CHAVE = 'aulaPlayerHeaderColapsado';
   function lerHeaderSalvo(){
@@ -339,8 +338,8 @@ function criar(aula, opcoes){
   }
 
   /* ---------- Nota didática (ocultar o rodapé em telas pequenas) ---------- */
-  /* Diferente do cabeçalho, o rodapé não tem controle nenhum dentro dele —
-     só o texto de apoio — então some por completo; o botão pra trazer de
+  /* Diferente do cabeçalho, o rodapé não tem controle nenhum dentro dele,
+     só o texto de apoio, então some por completo; o botão pra trazer de
      volta mora na topbar, não no próprio rodapé. */
   const NOTE_CHAVE = 'aulaPlayerNoteOculta';
   function lerNoteSalvo(){
@@ -449,11 +448,11 @@ function criar(aula, opcoes){
       paint(texto, null);
       /* Slide sempre começa do topo: sem esta guarda, o scrollAte abaixo rolaria
          o .codewrap até o fim do código do arquivo ativo (invisível no slide) e
-         desfaria o scrollTop=0 do renderConcept — o slide abria no meio. */
+         desfaria o scrollTop=0 do renderConcept: o slide abria no meio. */
       if (ehSlide(step) || (!emPreview && (step.op === 'clear' || step.op === 'file'))) el.codewrap.scrollTop = 0;
       else if (!emPreview && (step.op === 'code' || step.op === 'insert')){
         /* Pulando direto pra esta etapa (barra de progresso, Home/End): mostra o
-           trecho que ela escreve, não o fim do arquivo — um `insert` no meio de
+           trecho que ela escreve, não o fim do arquivo: um `insert` no meio de
            um arquivo grande ficava fora da tela. */
         const antes = prev.files[step.file] || '';
         scrollAte(texto, pontoDeInsercao(step, antes) + (step.code || '').length);
@@ -518,7 +517,7 @@ function criar(aula, opcoes){
   if (typeof cfg.etapaInicial === 'number') idx = Math.max(0, Math.min(steps.length-1, cfg.etapaInicial));
   render(false);
 
-  /* API pública da instância — útil para controlar a aula de fora */
+  /* API pública da instância: útil para controlar a aula de fora */
   return {
     proxima: () => go(1),
     anterior: () => go(-1),

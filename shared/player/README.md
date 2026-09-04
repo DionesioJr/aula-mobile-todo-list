@@ -18,7 +18,7 @@ aula/
   player/markdown.js    markdown mínimo → HTML, usado nos slides de conceito/desafio
   player/markup.js      HTML do esqueleto da interface (topbar, sidebar, editor…)
   player/player.js      motor principal: digitação, navegação, progresso, eventos
-  aulas/*.js            conteúdo de cada aula — só dados, nada de interface
+  aulas/*.js            conteúdo de cada aula, só dados, nada de interface
 ```
 
 Os módulos de `player/` se registram em `window.AulaEngine` (`highlight`, `icons`,
@@ -36,7 +36,7 @@ fica assim:
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aula — Título</title>
+  <title>Aula, Título</title>
   <link rel="stylesheet" href="player/player.css" />
 </head>
 <body>
@@ -79,13 +79,13 @@ fica assim:
 | `rename` | `from`, `to` | Renomeia |
 
 Todas as etapas aceitam `part` (nome da parte, usado no progresso), `title` e
-`explain` (a nota do rodapé do editor — só aparece fora do modo slide). Os
+`explain` (a nota do rodapé do editor, só aparece fora do modo slide). Os
 textos de `explain` aceitam HTML.
 
 ### O campo `md` (slides de conceito/desafio)
 
 `intro`, `note`, `outro` e `challenge` recebem o corpo do slide em **Markdown**
-puro (campo `md`), renderizado por `player/markdown.js` — um conversor mínimo,
+puro (campo `md`), renderizado por `player/markdown.js`: um conversor mínimo,
 sem dependências, que suporta:
 
 ```
@@ -93,23 +93,23 @@ sem dependências, que suporta:
 texto solto          parágrafo
 - item                lista com marcador
 1. item               lista numerada
-> texto               citação — vira a caixa de destaque/dica
+> texto               citação, vira a caixa de destaque/dica
 **negrito**  `código`  [texto](url)   formatação em linha
 ```` ```               bloco de código cercado
 ---                   régua horizontal
 ```
 
 **Não suportado** (some ou aparece literal): tabela, itálico com asterisco
-simples (`*assim*` — use `**negrito**`), lista aninhada, imagem.
+simples (`*assim*`, use `**negrito**`), lista aninhada, imagem.
 
-Isso evita escrever HTML na mão e — o motivo de existir — evita que uma
+Isso evita escrever HTML na mão e, o motivo de existir, evita que uma
 explicação longa "quebre" o layout: o slide ocupa a tela toda (ver `.slide-mode`
 em `player.css`), então listas, títulos e blocos de código cabem soltos, sem
 depender do espaço apertado do editor+sidebar.
 
-`title`/`eyebrow` continuam fora do markdown — são o cabeçalho do slide, não o
+`title`/`eyebrow` continuam fora do markdown, são o cabeçalho do slide, não o
 corpo. Etapas antigas com `lead`/`bullets[]`/`tip` (sem `md`) ainda funcionam,
-como compatibilidade — mas prefira `md` em aulas novas.
+como compatibilidade, mas prefira `md` em aulas novas.
 
 ## Controles
 
@@ -117,7 +117,7 @@ como compatibilidade — mas prefira `md` em aulas novas.
 bloco na hora) · `←` volta · `↑` `↓` velocidade · `Home` / `End` primeira e
 última etapa · clique na barra de progresso pula para o ponto.
 
-`C` recolhe/expande o cabeçalho · `R` oculta/mostra o rodapé (nota didática) —
+`C` recolhe/expande o cabeçalho · `R` oculta/mostra o rodapé (nota didática);
 úteis em telas ou projeções pequenas. Os mesmos dois botões ficam na topbar
 (`⤒`/`⤓`), ao lado do toggle do Explorer; o estado de cada um fica salvo no
 `localStorage`, igual ao Explorer e ao tema.
