@@ -19,8 +19,14 @@ const PILL = {
 function esqueleto(meta){
   return '' +
   '<div class="topbar">' +
-    '<div class="proj"><b>' + (meta.projeto || 'projeto') + '</b>' +
-      '<span>' + (meta.subtitulo || '') + '</span></div>' +
+    '<div class="proj">' +
+      '<nav class="crumbs">' +
+        '<a href="../../index.html">Aulas</a>' +
+        '<span class="crumbs-sep">/</span>' +
+        '<span class="crumbs-current">' + (meta.titulo || meta.projeto || 'aula') + '</span>' +
+      '</nav>' +
+      '<span class="proj-sub">' + (meta.subtitulo || '') + '</span>' +
+    '</div>' +
     '<div class="spacer"></div>' +
     '<div class="badge-part" data-el="partBadge"></div>' +
     '<div class="keys"><kbd>←</kbd><kbd>→</kbd> navegar</div>' +
