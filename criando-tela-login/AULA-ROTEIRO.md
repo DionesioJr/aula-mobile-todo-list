@@ -47,7 +47,7 @@ apresentação e outra.
 
 ### O cartão de desafio
 
-Quando aparecer um cartão **roxo** com "🧩 Desafio" no canto:
+Quando aparecer um cartão **roxo** com "Desafio" no canto:
 
 1. **Pare de apertar seta.** Leia o enunciado em voz alta.
 2. Dê à turma o tempo sugerido no selo (3–5 min) para tentar no próprio

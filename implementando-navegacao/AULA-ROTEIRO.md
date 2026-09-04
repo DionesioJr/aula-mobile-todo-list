@@ -60,7 +60,7 @@ etapa normalmente.
 
 ### Os cartões de desafio
 
-Quando aparecer um cartão **roxo** com "🧩 Desafio":
+Quando aparecer um cartão **roxo** com "Desafio":
 
 1. **Pare de apertar seta.** Leia o enunciado em voz alta.
 2. Dê à turma o tempo do selo (4–8 min) para tentar no próprio Snack.

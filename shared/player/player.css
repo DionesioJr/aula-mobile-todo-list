@@ -352,7 +352,6 @@
     border-left:3px solid var(--fn);padding-left:43px;
   }
   .concept-inner.challenge .eyebrow{color:var(--fn);border-bottom-color:rgba(179,164,204,.25)}
-  .concept-inner.challenge h2::before{content:"🧩 ";}
   .time-chip{
     flex-shrink:0;font-size:10px;letter-spacing:.06em;text-transform:none;
     padding:3px 9px;border-radius:20px;font-weight:600;

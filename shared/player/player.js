@@ -220,7 +220,7 @@ function criar(aula, opcoes){
        (step.bullets ? '<ul>' + step.bullets.map(b => '<li>' + b + '</li>').join('') + '</ul>' : '') +
        (step.tip ? '<blockquote><b>' + (isChallenge ? 'Dica' : 'Observação') + ':</b> ' + step.tip + '</blockquote>' : ''));
     el.concept.innerHTML = '<div class="concept-inner' + (isChallenge ? ' challenge' : '') + '">' +
-      '<div class="eyebrow">' + (step.eyebrow || (isChallenge ? '🧩 Desafio · ' + (step.part||'') : step.part)) +
+      '<div class="eyebrow">' + (step.eyebrow || (isChallenge ? 'Desafio · ' + (step.part||'') : step.part)) +
         (isChallenge && step.time ? '<span class="time-chip">' + step.time + '</span>' : '') +
       '</div>' +
       '<' + tag + '>' + step.title + '</' + tag + '>' +
