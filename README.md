@@ -23,6 +23,8 @@ criando-tela-login/               projeto React Native, tela de login
     aulas/*.js                    conteúdo da aula (etapas, slides, desafios)
 implementando-navegacao/          projeto React Native, cadastro + navegação
   aula/...                        idem
+listando-tarefas/                 projeto React Native, login leva à lista de tarefas
+  aula/...                        idem
 ```
 
 Cada pasta de aula também tem o projeto Expo usado em aula (`App.tsx`,
