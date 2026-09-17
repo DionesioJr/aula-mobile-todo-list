@@ -1,13 +1,14 @@
 # Editando tarefas
 
 App React Native com Login, Cadastro e uma lista de tarefas com **CRUD
-completo**: criar, editar, concluir e excluir. **Sem nenhuma biblioteca
-externa**: só o que o React e o React Native trazem por padrão (`useState`,
-`View`, `Text`, `TextInput`, `TouchableOpacity`, `FlatList`, `StyleSheet`,
-`Alert`) e `props`.
+completo** (criar, editar, concluir e excluir), navegando com **React
+Navigation**. A tarefa a editar viaja nos params da rota, e a lista, que é
+estado compartilhado, desce por props pela forma de função do
+`<Stack.Screen>`.
 
-Continuação direta da aula 4 (`listando-tarefas/`), que entregou a listagem
-de tarefas mocada, só leitura.
+Continuação direta da aula 4 (`usando-react-navigation/`), que trocou a
+navegação manual pelo React Navigation e deixou a lista de tarefas
+importando o mock por conta própria.
 
 ## Instalar
 
@@ -20,6 +21,10 @@ Com pnpm:
 ```bash
 pnpm install
 ```
+
+As dependências são as mesmas da aula 4 (`@react-navigation/native`,
+`@react-navigation/native-stack`, `react-native-screens` e
+`react-native-safe-area-context`). Esta aula não acrescenta nenhuma.
 
 ## Executar
 
@@ -35,40 +40,47 @@ no terminal para abrir em um emulador.
 
 ## O que tem de novo
 
-- `src/screens/tarefas/FormularioTarefaScreen.tsx`, uma tela só, reaproveitada
-  pra criar e pra editar uma tarefa (`tarefaEditando: Tarefa | null` decide o
-  modo).
-- `App.tsx`: as tarefas saem do mock direto e viram estado
-  (`useState(TAREFAS_MOCK)`), com funções `salvarTarefa`, `alternarConcluida`
-  e `excluirTarefa`, todas atualizando o array sem mutar (`map`/`filter`/
-  spread).
-- `src/screens/tarefas/ListaTarefasScreen.tsx` ganha um botão de nova tarefa,
-  toque no título abre edição, toque no status alterna concluída/pendente, e
-  um botão de excluir com confirmação.
+- `src/screens/tarefas/FormularioTarefaScreen.tsx`, uma tela só,
+  reaproveitada para criar e para editar. O modo vem da navegação:
+  `route.params` com uma tarefa é edição, sem params é criação.
+- `src/navigation/tipos.ts` ganha a rota `Formulario`, cujos params levam
+  um objeto `Tarefa` inteiro.
+- `App.tsx`: as tarefas viram estado (`useState(TAREFAS_MOCK)`), com
+  `salvarTarefa`, `alternarConcluida` e `excluirTarefa` atualizando o array
+  sem mutar (`map`/`filter`/spread). As rotas `Lista` e `Formulario` usam a
+  forma de função do `<Stack.Screen>` para receber esse estado por prop, e
+  o `options` do formulário é uma função que lê `route.params` para
+  escolher o título do cabeçalho.
+- `src/screens/tarefas/ListaTarefasScreen.tsx` volta a receber `tarefas`
+  por prop, ganha um botão de nova tarefa, toque no título abre a edição,
+  toque no status alterna concluída/pendente e um botão de excluir pede
+  confirmação.
 
 ## Estrutura
 
 ```
-App.tsx                                   estado da tela + conta + tarefas + navegação
+App.tsx                                   rotas + estado das tarefas + as 3 funções
 src/
   data/
     tarefas.ts                            tipo Tarefa + mock TAREFAS_MOCK (valor inicial)
+  navigation/
+    tipos.ts                              RootStackParamList, agora com a rota Formulario
   screens/
     LoginScreen.tsx                       inalterado desde a aula 4
-    CadastroScreen.tsx                    inalterado desde a aula 3
+    CadastroScreen.tsx                    inalterado desde a aula 4
     tarefas/
-      ListaTarefasScreen.tsx              props (tarefas, aoSair, aoNovaTarefa, aoTocarTarefa, aoAlternarConcluida, aoExcluirTarefa)
-      FormularioTarefaScreen.tsx          props (tarefaEditando, aoSalvar, aoVoltar)
+      ListaTarefasScreen.tsx              props (tarefas, aoAlternarConcluida, aoExcluirTarefa) + navigation
+      FormularioTarefaScreen.tsx          props (aoSalvar) + navigation e route
 ```
 
 ## Aula interativa
 
 Tudo fica na pasta [`aula/`](aula/). Abra [`aula/index.html`](aula/index.html)
-no navegador (duplo clique) para a apresentação que constrói o formulário e
-o CRUD do zero, partindo do código pronto da aula 4.
+no navegador (duplo clique) para a apresentação, que constrói o formulário
+e o CRUD partindo do código pronto da aula 4.
 
-A apresentação **para em dois pontos** e propõe um desafio para a turma
-resolver sozinha antes de ver a solução sendo digitada, ver
+A apresentação **para em três pontos** e propõe um desafio para a turma
+resolver sozinha antes de ver a solução sendo aplicada, ver
 [`AULA-ROTEIRO.md`](AULA-ROTEIRO.md) para o roteiro completo do professor e
 [`BRIEF.md`](BRIEF.md) para o escopo.
 
@@ -83,8 +95,9 @@ resolver sozinha antes de ver a solução sendo digitada, ver
 
 ### Mantendo a aula sincronizada com o código
 
-Sempre que `App.tsx` ou os arquivos de `src/screens/tarefas` forem
-alterados, os trechos digitados na aula podem ficar desatualizados. Rode:
+Sempre que `App.tsx`, `src/navigation/tipos.ts` ou os arquivos de
+`src/screens/tarefas` forem alterados, os trechos aplicados na aula podem
+ficar desatualizados. Rode:
 
 ```bash
 pnpm check-aula
@@ -94,6 +107,6 @@ O script reconstrói cada arquivo a partir do `INITIAL_FILES` mais as etapas
 da aula e compara com o código real, apontando exatamente qual trecho ficou
 divergente. Saída limpa = aula em sincronia.
 
-Isso também valida as âncoras `after`/`before` das etapas `insert`: uma
-âncora que não existe mais faz o texto cair no fim do arquivo, e o diff
-mostra na hora.
+Isso também valida as âncoras `after`/`before` das etapas `insert` e os
+`find` das etapas `replace`: um trecho que não existe mais faz a etapa não
+aplicar nada, e o diff mostra na hora.

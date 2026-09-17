@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/tipos';
 
-type Props = {
-  aoCadastrar: (usuario: string, senha: string) => void;
-  aoVoltar: () => void;
-};
+type Props = NativeStackScreenProps<RootStackParamList, 'Cadastro'>;
 
-export default function CadastroScreen({ aoCadastrar, aoVoltar }: Props) {
+export default function CadastroScreen({ navigation }: Props) {
   const [nome, setNome] = useState('');
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
@@ -26,13 +25,11 @@ export default function CadastroScreen({ aoCadastrar, aoVoltar }: Props) {
       return;
     }
     Alert.alert('Conta criada!', `Bem-vindo, ${nome}. Agora é só entrar.`);
-    aoCadastrar(usuario, senha);
+    navigation.navigate('Login', { usuario: usuario, senha: senha });
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Criar conta</Text>
-
       <TextInput
         style={styles.input}
         placeholder="Nome"
@@ -68,7 +65,7 @@ export default function CadastroScreen({ aoCadastrar, aoVoltar }: Props) {
         <Text style={styles.botaoTexto}>Cadastrar</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={aoVoltar}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text style={styles.link}>Já tenho conta, voltar</Text>
       </TouchableOpacity>
     </View>
@@ -77,7 +74,6 @@ export default function CadastroScreen({ aoCadastrar, aoVoltar }: Props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#fff' },
-  titulo: { fontSize: 24, fontWeight: 'bold', marginBottom: 24, textAlign: 'center' },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',

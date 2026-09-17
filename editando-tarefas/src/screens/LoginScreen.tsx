@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/tipos';
 
-type Props = {
-  conta: { usuario: string; senha: string };
-  aoCriarConta: () => void;
-  aoLogar: () => void;
-};
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export default function LoginScreen({ conta, aoCriarConta, aoLogar }: Props) {
+export default function LoginScreen({ navigation, route }: Props) {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
+  const conta = route.params;
 
   function handleLogin() {
     if (!usuario || !senha) {
       Alert.alert('Atenção', 'Preencha usuário e senha.');
       return;
     }
-    if (usuario !== conta.usuario || senha !== conta.senha) {
+    if (!conta || usuario !== conta.usuario || senha !== conta.senha) {
       Alert.alert('Erro', 'Usuário ou senha inválidos.');
       return;
     }
     Alert.alert('Bem-vindo!', `Login efetuado como ${usuario}.`);
-    aoLogar();
+    navigation.navigate('Lista');
   }
 
   return (
@@ -48,7 +47,7 @@ export default function LoginScreen({ conta, aoCriarConta, aoLogar }: Props) {
         <Text style={styles.botaoTexto}>Entrar</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={aoCriarConta}>
+      <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
         <Text style={styles.link}>Não tem conta? Cadastre-se</Text>
       </TouchableOpacity>
     </View>

@@ -27,6 +27,8 @@ listando-tarefas/                 projeto React Native, login leva à lista de t
   aula/...                        idem
 usando-react-navigation/          projeto React Native, navegação com React Navigation
   aula/...                        idem
+editando-tarefas/                 projeto React Native, CRUD de tarefas sobre as rotas
+  aula/...                        idem
 ```
 
 Cada pasta de aula também tem o projeto Expo usado em aula (`App.tsx`,

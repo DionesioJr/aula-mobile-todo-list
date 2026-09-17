@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigation/tipos';
 import { Tarefa } from '../../data/tarefas';
 
-type Props = {
-  tarefaEditando: Tarefa | null;
-  aoSalvar: (titulo: string) => void;
-  aoVoltar: () => void;
+type Props = NativeStackScreenProps<RootStackParamList, 'Formulario'> & {
+  aoSalvar: (titulo: string, tarefaEditando: Tarefa | null) => void;
 };
 
-export default function FormularioTarefaScreen({ tarefaEditando, aoSalvar, aoVoltar }: Props) {
+export default function FormularioTarefaScreen({ navigation, route, aoSalvar }: Props) {
+  const tarefaEditando = route.params ? route.params.tarefa : null;
   const [titulo, setTitulo] = useState(tarefaEditando ? tarefaEditando.titulo : '');
 
   function handleSalvar() {
@@ -16,13 +17,12 @@ export default function FormularioTarefaScreen({ tarefaEditando, aoSalvar, aoVol
       Alert.alert('Atenção', 'Digite um título para a tarefa.');
       return;
     }
-    aoSalvar(titulo);
+    aoSalvar(titulo, tarefaEditando);
+    navigation.goBack();
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>{tarefaEditando ? 'Editar tarefa' : 'Nova tarefa'}</Text>
-
       <TextInput
         style={styles.input}
         placeholder="Título da tarefa"
@@ -34,7 +34,7 @@ export default function FormularioTarefaScreen({ tarefaEditando, aoSalvar, aoVol
         <Text style={styles.botaoTexto}>Salvar</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={aoVoltar}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text style={styles.link}>Cancelar</Text>
       </TouchableOpacity>
     </View>
@@ -43,7 +43,6 @@ export default function FormularioTarefaScreen({ tarefaEditando, aoSalvar, aoVol
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#fff' },
-  titulo: { fontSize: 24, fontWeight: 'bold', marginBottom: 24, textAlign: 'center' },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
