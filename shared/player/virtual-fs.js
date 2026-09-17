@@ -25,6 +25,17 @@ function pontoDeInsercao(step, conteudo){
   return conteudo.length; // 'code' sempre acrescenta no fim
 }
 
+/* De onde a digitação parte, para code/insert/replace.
+   Em 'replace' o trecho antigo some de uma vez e o novo é digitado no lugar
+   dele, por isso a base é o conteúdo JÁ SEM o trecho procurado. Se o trecho
+   não existir, nada muda (e o diff do check-sync aponta a âncora morta). */
+function inicioDaDigitacao(step, conteudo){
+  if (step.op !== 'replace') return { base: conteudo, at: pontoDeInsercao(step, conteudo) };
+  const i = conteudo.indexOf(step.find);
+  if (i < 0) return { base: conteudo, at: conteudo.length };
+  return { base: conteudo.slice(0, i) + conteudo.slice(i + step.find.length), at: i };
+}
+
 /* Reconstrói o estado do projeto aplicando as etapas 0..upto */
 function snapshot(steps, inicial, upto){
   const entries = (inicial.entries || []).map(e => ({...e}));
@@ -51,6 +62,16 @@ function snapshot(steps, inicial, upto){
         const atual = files[s.file] || '';
         const pos = pontoDeInsercao(s, atual);
         files[s.file] = atual.slice(0, pos) + s.code + atual.slice(pos);
+        active = s.file;
+        break;
+      }
+      case 'replace': {
+        /* Edição no lugar: troca a primeira ocorrência de `find` por `code`
+           (code vazio ou ausente = só remove). Se o trecho não existir, o
+           arquivo fica intacto e o diff do check-sync mostra a divergência. */
+        const atual = files[s.file] || '';
+        const i = atual.indexOf(s.find);
+        if (i >= 0) files[s.file] = atual.slice(0, i) + (s.code || '') + atual.slice(i + s.find.length);
         active = s.file;
         break;
       }
@@ -94,6 +115,6 @@ function buildTree(entries){
 }
 
 global.AulaEngine = global.AulaEngine || {};
-global.AulaEngine.fs = { pontoDeInsercao, snapshot, buildTree };
+global.AulaEngine.fs = { pontoDeInsercao, inicioDaDigitacao, snapshot, buildTree };
 
 })(window);

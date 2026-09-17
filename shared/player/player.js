@@ -38,6 +38,11 @@
      file   {target}       → cria arquivo vazio e abre
      code   {file, code}   → digita código no fim do arquivo
      insert {file, code, after|before} → digita código em um ponto do arquivo
+     replace {file, find, code} → troca um trecho existente pelo novo, no lugar
+                               (o trecho antigo some e o novo é digitado ali;
+                               sem `code`, só remove). É a operação de AJUSTAR
+                               um arquivo que já existe, em vez de esvaziá-lo
+                               com `clear` e redigitar tudo.
      clear  {target}       → esvazia o arquivo
      delete {target}       → apaga arquivo ou pasta
      rename {from, to}     → renomeia
@@ -47,7 +52,7 @@
 
 const { highlight } = global.AulaEngine.highlight;
 const { iconFor } = global.AulaEngine.icons;
-const { pontoDeInsercao, snapshot, buildTree } = global.AulaEngine.fs;
+const { inicioDaDigitacao, snapshot, buildTree } = global.AulaEngine.fs;
 const { esqueleto, PILL } = global.AulaEngine.markup;
 const { render: renderMarkdown } = global.AulaEngine.markdown;
 
@@ -440,9 +445,11 @@ function criar(aula, opcoes){
     renderProgress(idx);
 
     const texto = displayPath != null ? (cur.files[displayPath] || '') : '';
-    if (!emPreview && animate && (step.op === 'code' || step.op === 'insert')){
+    const digita = step.op === 'code' || step.op === 'insert' || step.op === 'replace';
+    if (!emPreview && animate && digita){
       const antes = prev.files[step.file] || '';
-      typeInto(antes, texto, pontoDeInsercao(step, antes));
+      const inicio = inicioDaDigitacao(step, antes);
+      typeInto(inicio.base, texto, inicio.at);
     } else {
       stopAnim(false);
       paint(texto, null);
@@ -450,12 +457,12 @@ function criar(aula, opcoes){
          o .codewrap até o fim do código do arquivo ativo (invisível no slide) e
          desfaria o scrollTop=0 do renderConcept: o slide abria no meio. */
       if (ehSlide(step) || (!emPreview && (step.op === 'clear' || step.op === 'file'))) el.codewrap.scrollTop = 0;
-      else if (!emPreview && (step.op === 'code' || step.op === 'insert')){
+      else if (!emPreview && digita){
         /* Pulando direto pra esta etapa (barra de progresso, Home/End): mostra o
-           trecho que ela escreve, não o fim do arquivo: um `insert` no meio de
-           um arquivo grande ficava fora da tela. */
+           trecho que ela escreve, não o fim do arquivo: um `insert` ou `replace`
+           no meio de um arquivo grande ficava fora da tela. */
         const antes = prev.files[step.file] || '';
-        scrollAte(texto, pontoDeInsercao(step, antes) + (step.code || '').length);
+        scrollAte(texto, inicioDaDigitacao(step, antes).at + (step.code || '').length);
       }
       else scrollAte(texto, texto.length);
     }

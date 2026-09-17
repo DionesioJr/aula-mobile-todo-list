@@ -74,6 +74,7 @@ fica assim:
 | `file` | `target` | Cria arquivo vazio e abre |
 | `code` | `file`, `code` | Digita no fim do arquivo |
 | `insert` | `file`, `code`, `after` \| `before` | Digita em um ponto do arquivo |
+| `replace` | `file`, `find`, `code` | **Ajusta** um trecho que já existe: a primeira ocorrência de `find` some e `code` é digitado no lugar dela. Sem `code`, só remove |
 | `clear` | `target` | Esvazia o arquivo |
 | `delete` | `target` | Apaga arquivo ou pasta |
 | `rename` | `from`, `to` | Renomeia |
@@ -81,6 +82,26 @@ fica assim:
 Todas as etapas aceitam `part` (nome da parte, usado no progresso), `title` e
 `explain` (a nota do rodapé do editor, só aparece fora do modo slide). Os
 textos de `explain` aceitam HTML.
+
+### Mudar um arquivo que já existe: `replace`, não `clear`
+
+Quando a aula parte de um código pronto (`inicial.files`) e vai **ajustar**
+esse código, use `replace`: a turma vê a linha antiga sair e a nova ser
+digitada exatamente no lugar dela, que é o que ela vai fazer no próprio
+editor. `clear` seguido de `code` recria o arquivo do zero e faz parecer que
+o código anterior não existia, reserve isso para quando quase nada do arquivo
+sobrevive.
+
+```js
+{ op:'replace', file:'src/screens/LoginScreen.tsx',
+  find:'export default function LoginScreen({ conta, aoLogar }: Props) {\n',
+  code:'export default function LoginScreen({ navigation, route }: Props) {\n' }
+```
+
+`find` é texto literal (não é regex) e vale a **primeira** ocorrência, então
+inclua contexto suficiente para o trecho ser único, inclusive o `\n` final
+quando a intenção é trocar a linha inteira. Se `find` não aparecer no arquivo,
+a etapa não muda nada, e o `check-sync` da aula mostra a divergência no diff.
 
 ### O campo `md` (slides de conceito/desafio)
 

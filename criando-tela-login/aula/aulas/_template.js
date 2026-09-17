@@ -24,7 +24,7 @@ const DEPS = [
 
 /* =========================================================================
    ROTEIRO
-   ops: intro | note | challenge | outro | folder | file | code | insert | clear | delete | rename
+   ops: intro | note | challenge | outro | folder | file | code | insert | replace | clear | delete | rename
    ========================================================================= */
 const STEPS = [
 {
